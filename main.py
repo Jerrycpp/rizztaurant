@@ -7,6 +7,7 @@ from pydub import AudioSegment
 import io
 import route_gen
 from evaluator import *
+from streamlit.components.v1 import html
 
 INPUT_AUDIO = 'audio/input.wav'
 OUTPUT_AUDIO = 'audio/output.wav'
@@ -56,7 +57,6 @@ elif st.session_state['prog_state'] == 3:
         route = route_gen.WalkingRoute(location['latitude'], location['longitude'], destination_name)
         route.fetch_route()
         route.display_route()
-        st.html("polyline_map.html")
         st.session_state['destination'] = destination_name
         st.session_state['prog_state'] = 4
     else:
@@ -66,6 +66,9 @@ elif st.session_state['prog_state'] == 3:
 
 elif st.session_state['prog_state'] == 4:
     chatbot.run_introduction('Arlington', st.session_state['destination'])
+    markdown_file = open("polyline_map.html", "r")
+    html(markdown_file.read())
+    markdown_file.close()
     st.audio(OUTPUT_AUDIO, autoplay=True)
     st.session_state['prog_state'] = 5
 

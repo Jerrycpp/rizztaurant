@@ -2,3 +2,4 @@ venv/
 rizztaurant.json
 .env
 __pycache__/
+debug.py
