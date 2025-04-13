@@ -9,8 +9,8 @@ import google.generativeai as genai1
 load_dotenv(find_dotenv())
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "rizztaurant.json"
-client = genai.Client(api_key=os.getenv("Gemini_Key"), http_options={'api_version': 'v1alpha'})
-genai1.configure(api_key=os.getenv("Gemini_Key"))
+client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"), http_options={'api_version': 'v1alpha'})
+genai1.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 
 class GeminiLiveAudio():
@@ -81,7 +81,7 @@ class GeminiLiveAudio():
 
     async def generate_introduction(self, city, destination):
         async with client.aio.live.connect(model=self.model, config=self.config) as session:
-            with wave.open("introduction.wav", "wb") as wf:
+            with wave.open(self.output_file, "wb") as wf:
                 wf.setnchannels(1)
                 wf.setsampwidth(2)
                 wf.setframerate(24000)

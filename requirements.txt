@@ -1,0 +1,16 @@
+streamlit
+streamlit-mic-recorder
+pydub
+dotenv
+wave
+google-genai
+google-generativeai
+google-cloud-speech
+streamlit-geolocation
+googlemaps
+polyline
+folium
+bs4
+pymongo
+vaderSentiment
+certifi
